@@ -1,0 +1,62 @@
+.container {
+    width: 360px;
+    margin: 40px auto;
+}
+
+section {
+    width: 300px;
+    margin: 20px auto;
+}
+
+h1 {
+    border-bottom: 1px solid;
+    font-size: 18px;
+    padding-bottom: 8px;
+}
+
+h2 {
+    font-size: 20px;
+
+}
+
+.input-form {
+    text-align: center;
+}
+
+input {
+    height: 20px;
+}
+
+[name="part"],
+[name="weight"],
+[name="freq"] {
+    width: 50px;
+}
+
+[name="event"] {
+    width: 150px;
+}
+
+button {
+    margin-left: 10px;
+}
+
+li {
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+back-link {
+    font-size: 14px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.delete-btn {
+    display: inline-block;
+    margin-left: 8px;
+}
