@@ -10,7 +10,7 @@
     <h1>{{ $post->created_at }} {{ $post->part }}</h1>
     <section>
         <h2>内容</h2>
-        <form method="post" action="{{ route('contents.store', $post) }}" class="input-form">
+        <form method="post" action="{{ route('contents.store', $post) }}" class="input-form" enctype="multipart/form-data">
             @csrf
 
             <input type="text" name="weight" placeholder="重量"> kg x

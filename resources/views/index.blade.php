@@ -5,7 +5,7 @@
 
     <h1>My Training Report</h1>
     <p>トレーニング部位・種目を入力してください。</p>
-    <form method="post" action="{{ route('posts.store') }}" class="input-form">
+    <form method="post" action="{{ route('posts.store') }}" class="input-form" enctype="multipart/form-data">
         @csrf
 
         <input type="text" name="part" value="{{ old('part') }}" placeholder="部位">
