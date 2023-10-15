@@ -13,9 +13,9 @@
         <form method="post" action="{{ route('contents.store', $post) }}" class="input-form" enctype="multipart/form-data">
             @csrf
 
-            <input type="text" name="weight" placeholder="重量"> kg x
-            <input type="text" name="freq" placeholder="回数"> 回
-            <button>追加</button>
+            <input type="text" name="weight" placeholder="重量" inputmode="numeric"> kg x
+            <input type="text" name="freq" placeholder="回数" inputmode="numeric"> 回
+            <button class="addBtn">追加</button>
             @error('weight')
             <div class="error">{{ $message }}</div>
             @enderror
@@ -27,12 +27,17 @@
             @forelse ($post->contents as $content)
             <li>
                 {{ $content->weight }} kg x {{ $content->freq }} 回
-                <form method="post" action="{{ route('contents.destroy', $content) }}" class="delete-btn">
+                <div class="btn-container">
+                <form method="get" action="{{ route('contents.editContent', $content) }}" class="updateBtn">
+                    <button>編集</button>
+                </form>
+                <form method="post" action="{{ route('contents.destroy', $content) }}" class="updateBtn" id="delete-btn">
                     @method('DELETE')
                     @csrf
 
-                    <button class="btn">削除</button>
+                    <button>削除</button>
                 </form>
+                </div>
             </li>
             @empty
             <li>まだ記録はありません。</li>
@@ -44,7 +49,7 @@
         'use strict';
 
         {
-            document.querySelectorAll('.delete-btn').forEach(form => {
+            document.querySelectorAll('#delete-btn').forEach(form => {
                 form.addEventListener('submit', e => {
                     e.preventDefault();
 

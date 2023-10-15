@@ -39,4 +39,36 @@ class PostController extends Controller
         return redirect()
             ->route('posts.index');
     }
+
+    public function editPost(Post $post)
+    {
+        return view('posts.editPost')
+            ->with(['post' => $post]);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $request->validate([
+            'part' => 'required',
+            'event' => 'required',
+        ], [
+            'part.required' => '部位は入力必須です。',
+            'event.required' => '種目は入力必須です。',
+        ]);
+
+        $post->part = $request->part;
+        $post->event = $request->event;
+        $post->save();
+
+        return redirect()
+            ->route('posts.index', $post);
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect()
+            ->route('posts.index');
+    }
 }

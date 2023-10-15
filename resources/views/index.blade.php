@@ -10,7 +10,7 @@
 
         <input type="text" name="part" value="{{ old('part') }}" placeholder="部位">
         <input type="text" name="event" value="{{ old('event') }}" placeholder="種目">
-        <button>追加</button>
+        <button class="addBtn">追加</button>
         @error('part')
             <div class="error">{{ $message }}</div>
         @enderror
@@ -25,8 +25,37 @@
                     {{ substr($post->created_at, 0, 10) }} {{ $post->part }} {{ $post->event }}
                 </a>
             </li>
+            <div class="btn-container">
+            <form method="get" action="{{ route('posts.editPost', $post) }}" class="updateBtn">
+                <button>編集</button>
+            </form>
+            <form method="post" action="{{ route('posts.destroy', $post) }}" class="updateBtn" id="delete-btn">
+                @method('DELETE')
+                @csrf
+
+                <button>削除</button>
+            </form>
+            </div>
         @empty
             <li>まだ投稿はありません。</li>
         @endforelse
     </ul>
+
+    <script>
+        'use strict';
+
+        {
+            document.querySelectorAll('#delete-btn').forEach(form => {
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+
+                    if (!confirm('削除しますか？')) {
+                        return;
+                    }
+
+                    form.submit();
+                });
+            });
+        }
+    </script>
 </x-layout>
